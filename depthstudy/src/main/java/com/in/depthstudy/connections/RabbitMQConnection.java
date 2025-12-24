@@ -1,15 +1,16 @@
 package com.in.depthstudy.connections;
 
-import com.in.depthstudy.constants.RabbitMQConstants;
+import constants.RabbitMQConstants;
 import jakarta.annotation.PostConstruct;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 public class RabbitMQConnection {
@@ -35,7 +36,7 @@ public class RabbitMQConnection {
     }
 
     @PostConstruct
-    private void add() throws IOException {
+    private void add() {
         Queue stockQueue = this.queue(RabbitMQConstants.STOCK_QUEUE);
         Queue priceQueue = this.queue(RabbitMQConstants.PRICE_QUEUE);
 
@@ -55,5 +56,13 @@ public class RabbitMQConnection {
         this.amqpAdmin.declareBinding(stockBind);
         this.amqpAdmin.declareBinding(priceBind);
 
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate template = new RabbitTemplate(connectionFactory);
+        template.setMessageConverter(new JacksonJsonMessageConverter());
+
+        return template;
     }
 }
