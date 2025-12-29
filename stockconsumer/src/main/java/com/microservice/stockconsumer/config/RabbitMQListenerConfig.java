@@ -24,6 +24,7 @@ public class RabbitMQListenerConfig {
                 new SimpleRabbitListenerContainerFactory();
 
         factory.setConnectionFactory(connectionFactory);
+        factory.setPrefetchCount(4);
         factory.setMessageConverter(jacksonMessageConverter);
 
         return factory;
