@@ -1,6 +1,7 @@
 package dto;
 
 public class PriceDTO {
+
     private String productCode;
     private Double price;
 
