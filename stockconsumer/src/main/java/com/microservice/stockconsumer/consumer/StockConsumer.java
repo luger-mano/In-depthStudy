@@ -17,6 +17,6 @@ public class StockConsumer {
         System.out.println(stockDTO.getAmount());
         System.out.println("----------------");
 
-        Thread.sleep(12000);
+        throw new IllegalArgumentException("Argumento inválido!");
     }
 }
