@@ -1,7 +1,7 @@
 package com.in.depthstudy.controller;
 
-import constants.RabbitMQConstants;
-import dto.StockDTO;
+import com.in.depthstudy.constants.RabbitMQConstants;
+import com.in.depthstudy.dto.StockDTO;
 import com.in.depthstudy.service.RabbitMQService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

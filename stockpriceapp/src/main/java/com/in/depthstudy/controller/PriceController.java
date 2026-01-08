@@ -1,8 +1,8 @@
 package com.in.depthstudy.controller;
 
+import com.in.depthstudy.constants.RabbitMQConstants;
+import com.in.depthstudy.dto.PriceDTO;
 import com.in.depthstudy.service.RabbitMQService;
-import constants.RabbitMQConstants;
-import dto.PriceDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;

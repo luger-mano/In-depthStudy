@@ -1,4 +1,4 @@
-package constants;
+package com.microservice.stockconsumer.constants;
 
 public class RabbitMQConstants {
     public static final String STOCK_QUEUE = "STOCK";

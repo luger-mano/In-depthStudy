@@ -20,6 +20,6 @@ public class TreatmentErrorHandler implements ErrorHandler {
         //Logar no ElasticSearch
         //Logar no Cloud Watch(AWS)
 
-        throw new AmqpRejectAndDontRequeueException("Não deve retornar a fila");
+//        throw new AmqpRejectAndDontRequeueException("Não deve retornar a fila");
     }
 }

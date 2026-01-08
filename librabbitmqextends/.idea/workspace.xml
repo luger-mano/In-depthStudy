@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98ac78b3-336e-4b7d-ba8b-40b20f8480fb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../priceconsumer/Dockerfile" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../stockconsumer/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../stockconsumer/src/main/java/com/microservice/stockconsumer/constants/RabbitMQConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../stockconsumer/src/main/java/com/microservice/stockconsumer/dto/PriceDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../stockconsumer/src/main/java/com/microservice/stockconsumer/dto/StockDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../stockpriceapp/src/main/java/com/in/depthstudy/constants/RabbitMQConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../stockpriceapp/src/main/java/com/in/depthstudy/dto/PriceDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../stockpriceapp/src/main/java/com/in/depthstudy/dto/StockDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/DECISION_TAB.LOG" beforeDir="false" afterPath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/DECISION_TAB.LOG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/LATEST.LOG" beforeDir="false" afterPath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/LATEST.LOG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/coordination/rabbit@51d7d9ad13c0/00000006.wal" beforeDir="false" />
@@ -18,6 +24,8 @@
       <change beforePath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/rabbit_durable_queue.DCD" beforeDir="false" afterPath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/rabbit_durable_queue.DCD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/rabbit_durable_queue.DCL" beforeDir="false" afterPath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/rabbit_durable_queue.DCL" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/rabbit_serial" beforeDir="false" afterPath="$PROJECT_DIR$/../dados/mnesia/rabbit@51d7d9ad13c0/rabbit_serial" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stockconsumer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stockconsumer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stockpriceapp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stockpriceapp/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,18 +79,6 @@
       <recent name="C:\Users\Lucas Germano\Documents\Projetos\Java\In-depthStudy\librabbitmqextends\src\main\java" />
       <recent name="C:\Users\Lucas Germano\Documents\Projetos\Java\In-depthStudy\librabbitmqextends\src\main" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

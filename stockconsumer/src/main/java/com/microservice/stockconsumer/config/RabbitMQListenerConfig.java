@@ -1,7 +1,6 @@
 package com.microservice.stockconsumer.config;
 
 import com.microservice.stockconsumer.exceptions.CustomErrorStrategy;
-import com.microservice.stockconsumer.exceptions.TreatmentErrorHandler;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler;
@@ -30,20 +29,18 @@ public class RabbitMQListenerConfig {
 
         factory.setConnectionFactory(connectionFactory);
         factory.setPrefetchCount(4);
-//        factory.setErrorHandler(new TreatmentErrorHandler());
-        factory.setErrorHandler(errorHandler());
         factory.setMessageConverter(jacksonMessageConverter);
 
         return factory;
     }
 
     @Bean
-    public FatalExceptionStrategy customErrorStrategy(){
+    public FatalExceptionStrategy customErrorStrategy() {
         return new CustomErrorStrategy();
     }
 
     @Bean
-    public ErrorHandler errorHandler(){
+    public ErrorHandler errorHandler() {
         return new ConditionalRejectingErrorHandler(customErrorStrategy());
     }
 }
