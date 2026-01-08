@@ -1,4 +1,19 @@
-FROM ubuntu:latest
-LABEL authors="Lucas Germano"
+FROM node:18 AS builder
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+
+RUN npm install --production
+
+COPY . .
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app .
+
+EXPOSE 5672
+
+CMD ["node", "./consumer.js"]
