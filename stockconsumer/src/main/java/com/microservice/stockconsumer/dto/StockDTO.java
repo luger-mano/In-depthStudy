@@ -1,4 +1,4 @@
-package dto;
+package com.microservice.stockconsumer.dto;
 
 public class StockDTO {
     private String productCode;

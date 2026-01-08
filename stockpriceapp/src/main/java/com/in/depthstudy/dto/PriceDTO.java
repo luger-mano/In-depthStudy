@@ -1,4 +1,4 @@
-package dto;
+package com.in.depthstudy.dto;
 
 public class PriceDTO {
 
