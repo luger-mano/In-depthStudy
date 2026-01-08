@@ -1,14 +1,15 @@
 package com.microservice.stockconsumer.consumer;
 
-import dto.StockDTO;
+import com.microservice.stockconsumer.constants.RabbitMQConstants;
+import com.microservice.stockconsumer.dto.StockDTO;
+import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import constants.RabbitMQConstants;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
 @Component
 public class StockConsumer {
-    @RabbitListener(queues = RabbitMQConstants.STOCK_QUEUE,
+    @RabbitListener(queuesToDeclare = @Queue(RabbitMQConstants.STOCK_QUEUE),
             containerFactory = "rabbitListenerContainerFactory")
     private void consumer(String message) throws InterruptedException {
         StockDTO stockDTO = new ObjectMapper().readValue(message, StockDTO.class);
@@ -17,6 +18,6 @@ public class StockConsumer {
         System.out.println(stockDTO.getAmount());
         System.out.println("----------------");
 
-        throw new IllegalArgumentException("Argumento inválido!");
+//        throw new IllegalArgumentException("Argumento inválido!");
     }
 }
