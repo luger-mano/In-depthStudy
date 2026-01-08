@@ -1,12 +1,12 @@
 const amqp = require('amqplib')
 
-const queue = 'PRICE'
+const queue = process.env.RABBITMQ_QUEUE || 'PRICE'
 
 amqp.connect({
-    host: 'localhost',
-    port: 5672,
-    username: 'admin',
-    password: 12345
+    hostname: process.env.RABBITMQ_HOST || 'localhost',
+    port: process.env.RABBITMQ_PORT || 5672,
+    username: process.env.RABBITMQ_USERNAME || 'admin',
+    password: process.env.RABBITMQ_PASSWORD || 12345
 })
     .then((connection) => {
         connection.createChannel()
