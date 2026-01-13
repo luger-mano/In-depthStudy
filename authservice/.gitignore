@@ -1,11 +1,9 @@
 HELP.md
 target/
+src/main/resources/keys/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-
-### KEYS ###
-/keys
 
 ### STS ###
 .apt_generated
