@@ -1,6 +1,7 @@
 HELP.md
 target/
-src/main/resources/keys/
+src/main/resources/keys/my.keys.pub
+src/main/resources/keys/mykeys
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
