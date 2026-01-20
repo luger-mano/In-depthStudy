@@ -6,6 +6,7 @@ import com.indepth.authservice.adapter.out.repository.SaveUserAdapter;
 import com.indepth.authservice.domain.ports.in.FindRoleByNameUseCasePort;
 import com.indepth.authservice.domain.ports.in.FindUserByEmailUseCasePort;
 import com.indepth.authservice.domain.ports.in.SaveUserUseCasePort;
+import com.indepth.authservice.domain.ports.out.AuthPublisherPort;
 import com.indepth.authservice.domain.usecase.FindRoleByNameUseCase;
 import com.indepth.authservice.domain.usecase.FindUserByEmailUseCase;
 import com.indepth.authservice.domain.usecase.SaveUserUseCase;
@@ -18,17 +19,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class BeanConfig {
 
     @Bean
-    public SaveUserUseCasePort saveUserUseCasePort(SaveUserAdapter saveUserAdapter, FindUserByEmailAdapter findUserByEmailAdapter, UserCredentialMapper userCredentialMapper, BCryptPasswordEncoder passwordEncoder) {
-        return new SaveUserUseCase(saveUserAdapter, findUserByEmailAdapter, userCredentialMapper, passwordEncoder);
+    public SaveUserUseCasePort saveUserUseCasePort(SaveUserAdapter saveUserAdapter, FindUserByEmailAdapter findUserByEmailAdapter, UserCredentialMapper userCredentialMapper, BCryptPasswordEncoder passwordEncoder, AuthPublisherPort publisher) {
+        return new SaveUserUseCase(saveUserAdapter, findUserByEmailAdapter, userCredentialMapper, passwordEncoder, publisher);
     }
 
     @Bean
-    public FindUserByEmailUseCasePort findUserByEmailUseCasePort(FindUserByEmailAdapter findUserByEmailAdapter){
+    public FindUserByEmailUseCasePort findUserByEmailUseCasePort(FindUserByEmailAdapter findUserByEmailAdapter) {
         return new FindUserByEmailUseCase(findUserByEmailAdapter);
     }
 
     @Bean
-    public FindRoleByNameUseCasePort findRoleByNameUseCasePort(FindRoleByNameAdapter findRoleByNameAdapter){
+    public FindRoleByNameUseCasePort findRoleByNameUseCasePort(FindRoleByNameAdapter findRoleByNameAdapter) {
         return new FindRoleByNameUseCase(findRoleByNameAdapter);
     }
+
 }
