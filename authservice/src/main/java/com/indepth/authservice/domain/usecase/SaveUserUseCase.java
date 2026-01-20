@@ -7,13 +7,15 @@ import com.indepth.authservice.adapter.out.entities.UserCredential;
 import com.indepth.authservice.adapter.out.repository.FindUserByEmailAdapter;
 import com.indepth.authservice.adapter.out.repository.SaveUserAdapter;
 import com.indepth.authservice.domain.ports.in.SaveUserUseCasePort;
+import com.indepth.authservice.domain.ports.out.AuthPublisherPort;
+import com.indepth.authservice.domain.user.UserCreatedEvent;
 import com.indepth.authservice.utils.UserCredentialMapper;
+import com.indepth.authservice.utils.constants.RabbitMQConstants;
 import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,13 +25,15 @@ public class SaveUserUseCase implements SaveUserUseCasePort {
     private final FindUserByEmailAdapter findUserByEmailAdapter;
     private final UserCredentialMapper mapper;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final AuthPublisherPort publisher;
 
 
-    public SaveUserUseCase(SaveUserAdapter saveUserAdapter, FindUserByEmailAdapter findUserByEmailAdapter, UserCredentialMapper mapper, BCryptPasswordEncoder passwordEncoder) {
+    public SaveUserUseCase(SaveUserAdapter saveUserAdapter, FindUserByEmailAdapter findUserByEmailAdapter, UserCredentialMapper mapper, BCryptPasswordEncoder passwordEncoder, AuthPublisherPort publisher) {
         this.saveUserAdapter = saveUserAdapter;
         this.findUserByEmailAdapter = findUserByEmailAdapter;
         this.mapper = mapper;
         this.passwordEncoder = passwordEncoder;
+        this.publisher = publisher;
     }
 
     @Override
@@ -39,7 +43,7 @@ public class SaveUserUseCase implements SaveUserUseCasePort {
 
             Role roleClient = new Role(2L, "CLIENT");
 
-            UserCredential userEmail = findUserByEmailAdapter.findByEmail(userRequestDTO.getEmail());
+            UserCredential userEmail = findUserByEmailAdapter.findByEmail(userRequestDTO.getEmail()).orElse(new UserCredential());
 
             if (!Objects.equals(userEmail.getEmail(), userRequestDTO.getEmail())) {
 
@@ -49,6 +53,9 @@ public class SaveUserUseCase implements SaveUserUseCasePort {
                 userMapp.setActive(true);
 
                 UserCredential userSaved = saveUserAdapter.saveUser(userMapp);
+                UserCreatedEvent event = new UserCreatedEvent(userSaved.getUserId(), userSaved.getEmail(), userSaved.getName());
+
+                publisher.publish(RabbitMQConstants.USER_CREATED_QUEUE, event);
 
                 return mapper.userCredentialToUserCredentialResponseDTO(userSaved);
             }
