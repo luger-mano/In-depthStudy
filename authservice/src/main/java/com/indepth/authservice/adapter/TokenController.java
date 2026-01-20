@@ -3,6 +3,7 @@ package com.indepth.authservice.adapter;
 import com.indepth.authservice.adapter.in.request.LoginRequestDTO;
 import com.indepth.authservice.adapter.in.response.LoginResponseDTO;
 import com.indepth.authservice.adapter.out.entities.Role;
+import com.indepth.authservice.adapter.out.entities.UserCredential;
 import com.indepth.authservice.domain.ports.in.FindUserByEmailUseCasePort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,7 +20,7 @@ import java.time.Instant;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("api/v1/auth")
 public class TokenController {
 
     private final JwtEncoder jwtEncoder;
@@ -34,7 +35,7 @@ public class TokenController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO requestDTO) {
-        var user = findUserByEmailUseCasePort.execute(requestDTO.getEmail());
+        var user = findUserByEmailUseCasePort.execute(requestDTO.getEmail()).orElse(new UserCredential());
         if (user == null || !user.isLoginCorrect(requestDTO, passwordEncoder)) {
             throw new BadCredentialsException("Usuário ou Senha inválido.");
         }

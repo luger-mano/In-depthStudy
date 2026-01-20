@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth/signup")
+@RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
     private final SaveUserUseCasePort saveUserUseCasePort;
 
-    @PostMapping
+    @PostMapping("/signup")
     public ResponseEntity<UserCredentialResponseDTO> registerUser(@RequestBody UserCredentialRequestDTO userRequestDTO) {
         UserCredentialResponseDTO user = saveUserUseCasePort.execute(userRequestDTO);
         return ResponseEntity.ok(user);
