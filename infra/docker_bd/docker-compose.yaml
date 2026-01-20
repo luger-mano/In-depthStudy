@@ -13,6 +13,19 @@ services:
       - "5433:5432"
     volumes:
       - posgtres_data_auth:/var/lib/postgresql/data
+  postgresql-user:
+    image: postgres:16
+    container_name: user-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 3571
+      POSTGRES_DB: user_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - posgtres_data_user:/var/lib/postgresql/data
 
 volumes:
   posgtres_data_auth:
+  posgtres_data_user:
