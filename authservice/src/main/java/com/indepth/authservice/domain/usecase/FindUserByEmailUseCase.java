@@ -4,6 +4,8 @@ import com.indepth.authservice.adapter.out.entities.UserCredential;
 import com.indepth.authservice.adapter.out.repository.FindUserByEmailAdapter;
 import com.indepth.authservice.domain.ports.in.FindUserByEmailUseCasePort;
 
+import java.util.Optional;
+
 public class FindUserByEmailUseCase implements FindUserByEmailUseCasePort {
 
 
@@ -14,7 +16,7 @@ public class FindUserByEmailUseCase implements FindUserByEmailUseCasePort {
     }
 
     @Override
-    public UserCredential execute(String email) {
+    public Optional<UserCredential> execute(String email) {
         return findUserByEmailAdapter.findByEmail(email);
     }
 }

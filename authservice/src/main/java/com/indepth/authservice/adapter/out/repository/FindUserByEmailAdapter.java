@@ -10,15 +10,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Component
 public class FindUserByEmailAdapter implements FindUserByEmailAdapterPort {
 
-    private UserCredentialRepository repository;
+    private final UserCredentialRepository repository;
 
     public FindUserByEmailAdapter(UserCredentialRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public UserCredential findByEmail(String email) {
-        return repository.findByEmail(email).orElse(new UserCredential());
+    public Optional<UserCredential> findByEmail(String email) {
+        return repository.findByEmail(email);
 
     }
 }
