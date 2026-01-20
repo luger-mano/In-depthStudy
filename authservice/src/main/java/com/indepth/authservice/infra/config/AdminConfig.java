@@ -39,26 +39,26 @@ public class AdminConfig implements CommandLineRunner {
         var roleAdmin = findRoleByName.execute(Role.Values.ADMIN.name());
         var userAdmin = findUserByEmail.execute("admin@email.com");
 
-        if (Objects.equals(userAdmin, new UserCredential())) {
-            UserCredentialRequestDTO userDTO = new UserCredentialRequestDTO();
-
-            userDTO.setName("admin");
-            userDTO.setEmail("admin@email.com");
-            userDTO.setPassword(passwordEncoder.encode("457732"));
-            userDTO.setRoles(Set.of(roleAdmin));
-            userDTO.setActive(true);
-
-            saveUser(userDTO);
-        }else {
-            System.out.println("Admin já existe.");
-        }
+        userAdmin.ifPresentOrElse(
+                user ->{
+                    System.out.println("Admin já existe");
+                },
+                () -> {
+                    UserCredential user = new UserCredential();
+                    user.setName("admin");
+                    user.setActive(true);
+                    user.setRoles(Set.of(roleAdmin));
+                    user.setEmail("admin@email.com");
+                    user.setPassword("457732");
+                    saveUser(user);
+                }
+        );
 
     }
 
 
-    public void saveUser(UserCredentialRequestDTO userRequestDTO) {
-        UserCredential user = mapper.userCredentialRequestDTOtoUserCredential(userRequestDTO);
-        UserCredential userSaved = saveUserAdapter.saveUser(user);
+    public void saveUser(UserCredential userCredential) {
+        UserCredential userSaved = saveUserAdapter.saveUser(userCredential);
 
         System.out.println("Admin criado");
         mapper.userCredentialToUserCredentialResponseDTO(userSaved);
