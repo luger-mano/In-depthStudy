@@ -23,8 +23,7 @@ public class RabbitMQConnection {
     public RabbitMQConnection(AmqpAdmin amqpAdmin) {
         this.amqpAdmin = amqpAdmin;
     }
-
-
+    
     private Queue queue(String queueName) {
         return new Queue(queueName, true, false, false);
     }
