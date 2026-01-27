@@ -104,10 +104,23 @@ In-depthStudy /
 
 Certifique-se de ter instalado em sua máquina:
 
+* IntelliJ IDE ou IDE da sua preferência
+```bash
+https://download.jetbrains.com/idea/ideaIC-2025.2.6.1.exe?_gl=1*fup02*_ga*NTE1Mzk2NTQwLjE3NjU1MDMwNDg.*_ga_9J976DJZ68*czE3Njk1NDA2OTUkbzMkZzAkdDE3Njk1NDA2OTYkajYwJGwwJGgw*_gcl_au*MTQwMjQwODg2MS4xNzY1NTAzMDQ4*FPAU*MTQwMjQwODg2MS4xNzY1NTAzMDQ4
+```
 * Java 17+ (JDK)
+```bash
+https://www.oracle.com/br/java/technologies/javase/javase8-archive-downloads.html#:~:text=jdk%2D8u202%2Dwindows%2Dx64.exe
+```
 * Maven 3.8+
-* Docker e Docker Compose
+* Docker Desktop
+```bash
+https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-win-amd64
+```
 * Git
+```bash
+https://github.com/git-for-windows/git/releases/download/v2.52.0.windows.1/Git-2.52.0-64-bit.exe
+```
 
 ---
 
